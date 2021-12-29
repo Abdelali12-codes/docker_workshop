@@ -14,11 +14,11 @@ app.get('/abdelali' , function(req , res){
 })
 
 app.get('/name', function(req, res){
-  res.send(`My name is ${process.env.NAME}`)
+  res.send(`My name is ${name}`)
 })
 
 app.get('/city' , function(req, res){
-  res.send(`My city is ${process.env.CITY}`)
+  res.send(`My city is ${city}`)
 })
 app.listen(8000, function () {
   console.log('Listening to Port 8000');
