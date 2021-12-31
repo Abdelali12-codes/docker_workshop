@@ -308,11 +308,11 @@ on your keyboard click on  Ctrl+x then y
 * if you are on linux run the below command:
 
 ```
-docker run --name container3 --hostname container3 -d -p 9000:80 $HOME/path/to/file:/usr/share/nginx/html nginx
+docker run --name container3 --hostname container3 -d -p 9000:80 -v $HOME/path/to/file:/usr/share/nginx/html nginx
 ```
 
 - if you are on windows using docker desktop
 
 ```
-docker run --name container3 --hostname container3 -d -p 9000:80 c:\\path\to\file:/usr/share/nginx/html nginx
+docker run --name container3 --hostname container3 -d -p 9000:80 -v c:\\path\to\file:/usr/share/nginx/html nginx
 ```
