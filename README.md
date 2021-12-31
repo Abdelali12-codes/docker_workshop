@@ -181,4 +181,138 @@ ip_address_of_the_host_you_are_running_docker_from/nodeapp
 
 ## types of volumes on docker (bind mount, volumes)
 
-###
+## volumes
+
+- create volume
+
+```
+docker volume create name_of_volume
+```
+
+- list volume
+
+```
+docker volume ls
+```
+
+- remove volume
+
+```
+docker volume rm name_of_volume
+```
+
+## implementation of volumes
+
+- in this example we will work with nginx (webserver) image to show you that example
+
+- pull the image from docker hub
+
+```
+docker pull nginx
+```
+
+- stop all previous run containers
+
+```
+docker rm -f node_app webapp
+```
+
+- run first container from the nginx image
+
+```
+
+docker run --name container1 --hostname container1 -p 80:80 -d -v name_of_volume:/usr/share/nginx/html nginx
+
+```
+
+- run the second container from the nginx image
+
+```
+docker run --name container2 --hostname container2 -p 8000:80 -d -v name_of_volume:/usr/share/nginx/html nginx
+```
+
+- try to open two tabs on your browser and browse the two containers using below
+
+```
+localhost <=> 127.0.0.1
+```
+
+- and
+
+```
+localhost:8000 <=> 127.0.0.1:8000
+```
+
+- now try to connect to one of the containers, you have just created (container1, container2) using the command below:
+
+```
+docker exec -it container1 bash
+```
+
+- an interactive terminal well be opened within your container that enable you to run commands on your run contianer
+
+* switch the path to /usr/share/nginx/html using the below
+
+```
+cd /usr/share/nginx/html
+```
+
+- list the content of the folder
+
+```
+ls
+```
+
+- update the packages inside the container
+
+```
+apt update
+
+```
+
+- install the nano editor to edit the index.html file
+
+```
+apt install nano
+```
+
+- edit the index.html file using the below command
+
+```
+nano index.html
+```
+
+- the editor will be opened delete or add some lines and follow the steps below
+
+```
+on your keyboard click on  Ctrl+x then y
+```
+
+- back to your browser and refresh the tabs, and you will discover that the file changes on the two containers even we changed it only on one container
+
+### bind mounts
+
+- first step create index.html somewhere on your laptop and edit it by paste this lines to it and save the changes
+
+```
+<html>
+<body>
+<h1> Hello world </h1>
+<h2> this is an example for the bind mounts </h2>
+</body>
+</html>
+```
+
+- second step, run the below command:
+
+* if you are on linux run the below command:
+
+```
+docker run --name container3 --hostname container3 -d -p 9000:80 $HOME/path/to/file:/usr/share/nginx/html nginx
+```
+
+- if you are on windows using docker desktop
+
+```
+docker run --name container3 --hostname container3 -d -p 9000:80 c:\\path\to\file:/usr/share/nginx/html nginx
+```
