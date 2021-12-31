@@ -98,9 +98,9 @@ docker push name_of_your_dockerhub_account/nodejsimage
 
 - to allow two containers to communicate to each others we either use network or volume (shared volume)
 
-### Docker network
+## Docker network
 
-#### we have three types of network
+### we have three types of network
 
 - host
 - bridge
@@ -179,4 +179,4 @@ ip_address_of_the_host_you_are_running_docker_from/nodeapp
 
 ## types of volumes on docker (bind mount, volumes)
 
-### 
+###
